@@ -3,7 +3,7 @@ module.exports = function (app, db) {
     app.get('/food/:id', (req, res) => {
         const id = req.params.id
         const details = { '_id': new ObjectID(id) };
-        db.collection('book').findOne(details, (err, item) => {
+        db.collection('food').findOne(details, (err, item) => {
             if (err) {
                 res.send({ 'error': 'an error has occured' });
             } else {
@@ -15,7 +15,7 @@ module.exports = function (app, db) {
     app.delete('/food/:id', (req, res) => {
         const id = req.params.id
         const details = { '_id': new ObjectID(id) };
-        db.collection('book').remove(details, (err, item) => {
+        db.collection('food').remove(details, (err, item) => {
             if (err) {
                 res.send({ 'error': 'an error has occured' });
             } else {
@@ -28,7 +28,7 @@ module.exports = function (app, db) {
         const id = req.params.id
         const details = { '_id': new ObjectID(id) };
         const food = { text: req.body.body, title: req.body.title };
-        db.collection('book').update(details, food, (err, item) => {
+        db.collection('food').update(details, food, (err, item) => {
             if (err) {
                 res.send({ 'error': 'an error has occured' });
             } else {
@@ -154,6 +154,7 @@ module.exports = function (app, db) {
             }
         });
     });
+
 
 
 };
