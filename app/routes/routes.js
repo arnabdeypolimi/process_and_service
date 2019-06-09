@@ -5,7 +5,7 @@ module.exports = function (app, db) {
         const details = { '_id': new ObjectID(id) };
         db.collection('food').findOne(details, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -17,7 +17,7 @@ module.exports = function (app, db) {
         const details = { '_id': new ObjectID(id) };
         db.collection('food').remove(details, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send('book' + id + 'deleted!');
             }
@@ -27,10 +27,10 @@ module.exports = function (app, db) {
     app.put('/food/:id', (req, res) => {
         const id = req.params.id
         const details = { '_id': new ObjectID(id) };
-        const food = { text: req.body.body, title: req.body.title };
+        const food = { restaurant: req.body.restaurant, number: req.body.number, type: req.body.type };
         db.collection('food').update(details, food, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -38,12 +38,13 @@ module.exports = function (app, db) {
     });
 
     app.post('/food', (req, res) => {
-        const food = { text: req.body.body, title: req.body.title };
+        const food = { restaurant: req.body.restaurant, number: req.body.number, type: req.body.type };
         db.collection('food').insert(food, (err, result) => {
             if (err) {
-                res.send({ 'error': 'An error has occured' + err });
+                res.status(400).json({ 'error': 'An error has occurred' + err });
             } else {
-                res.send(result.ops[0])
+                res.status(200).json(result.ops[0]);
+                // res.send(result.ops[0])
             }
         });
     });
@@ -55,7 +56,7 @@ module.exports = function (app, db) {
         const details = { '_id': new ObjectID(id) };
         db.collection('user').findOne(details, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -68,7 +69,7 @@ module.exports = function (app, db) {
         const user = { name: req.body.name, email: req.body.email, pass: req.body.password };
         db.collection('user').update(details, user, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -79,7 +80,7 @@ module.exports = function (app, db) {
         const user = { name: req.body.name, email: req.body.email, pass: req.body.password };
         db.collection('user').insert(user, (err, result) => {
             if (err) {
-                res.send({ 'error': 'An error has occured' + err });
+                res.send({ 'error': 'An error has occurred' + err });
             } else {
                 res.send("success")
             }
@@ -90,7 +91,7 @@ module.exports = function (app, db) {
         const details = { 'email': req.body.email, 'pass': req.body.password };
         db.collection('user').findOne(details, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -103,7 +104,7 @@ module.exports = function (app, db) {
         const restaurant = { name: req.body.name, location: req.body.location, type: req.body.type };
         db.collection('restaurant').insert(restaurant, (err, result) => {
             if (err) {
-                res.send({ 'error': 'An error has occured' + err });
+                res.send({ 'error': 'An error has occurred' + err });
             } else {
                 res.send("success")
             }
@@ -115,7 +116,7 @@ module.exports = function (app, db) {
         const details = { '_id': new ObjectID(id) };
         db.collection('restaurant').findOne(details, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -125,7 +126,7 @@ module.exports = function (app, db) {
     app.get('/request/all', (req, res) => {
         db.collection('request').distinct('_id', (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -137,7 +138,7 @@ module.exports = function (app, db) {
         const details = { '_id': new ObjectID(id) };
         db.collection('request').findOne(details, (err, item) => {
             if (err) {
-                res.send({ 'error': 'an error has occured' });
+                res.send({ 'error': 'an error has occurred' });
             } else {
                 res.send(item)
             }
@@ -148,7 +149,7 @@ module.exports = function (app, db) {
         const request = { name: req.body.name, email: req.body.email, category: req.body.category };
         db.collection('request').insert(request, (err, result) => {
             if (err) {
-                res.send({ 'error': 'An error has occured' + err });
+                res.send({ 'error': 'An error has occurred' + err });
             } else {
                 res.send("success")
             }
