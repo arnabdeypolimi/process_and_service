@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_09sw6n3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.0">
+  <bpmn:process id="Donothrow_HighLevel" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1ah8ku4</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1ah8ku4" sourceRef="StartEvent_1" targetRef="Task_1j1y3jc" />
+    <bpmn:sequenceFlow id="SequenceFlow_0nz8v0f" sourceRef="Task_1j1y3jc" targetRef="Task_09wwtmb" />
+    <bpmn:endEvent id="EndEvent_062gjr1">
+      <bpmn:incoming>SequenceFlow_0evrqlr</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0evrqlr" sourceRef="Task_09wwtmb" targetRef="EndEvent_062gjr1" />
+    <bpmn:subProcess id="Task_1j1y3jc" name="Log in">
+      <bpmn:incoming>SequenceFlow_1ah8ku4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0nz8v0f</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="Task_09wwtmb" name="Request Food">
+      <bpmn:incoming>SequenceFlow_0nz8v0f</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0evrqlr</bpmn:outgoing>
+      <bpmn:standardLoopCharacteristics />
+    </bpmn:subProcess>
+    <bpmn:subProcess id="SubProcess_1mkiuoo" name="Log out" triggeredByEvent="true">
+      <bpmn:startEvent id="StartEvent_0wy59w0" name="Token expired">
+        <bpmn:outgoing>SequenceFlow_1hfpppd</bpmn:outgoing>
+        <bpmn:timerEventDefinition id="TimerEventDefinition_0fe3ics" />
+      </bpmn:startEvent>
+      <bpmn:endEvent id="EndEvent_0siw0zq">
+        <bpmn:incoming>SequenceFlow_0gi5gg5</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:startEvent id="StartEvent_0ssksox" name="Log out request">
+        <bpmn:outgoing>SequenceFlow_1d8pc6s</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_1xcp35y" />
+      </bpmn:startEvent>
+      <bpmn:exclusiveGateway id="ExclusiveGateway_0z7ghza">
+        <bpmn:incoming>SequenceFlow_1hfpppd</bpmn:incoming>
+        <bpmn:incoming>SequenceFlow_1d8pc6s</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1lvo8ej</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:serviceTask id="ServiceTask_0xvvnm8" name="Delete token">
+        <bpmn:incoming>SequenceFlow_1lvo8ej</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_0gi5gg5</bpmn:outgoing>
+        <bpmn:dataOutputAssociation id="DataOutputAssociation_1iwhguc">
+          <bpmn:targetRef>DataObjectReference_0ogrf54</bpmn:targetRef>
+        </bpmn:dataOutputAssociation>
+      </bpmn:serviceTask>
+      <bpmn:dataObjectReference id="DataObjectReference_0ogrf54" name="Token" dataObjectRef="DataObject_17gf9em" />
+      <bpmn:dataObject id="DataObject_17gf9em" />
+      <bpmn:sequenceFlow id="SequenceFlow_1hfpppd" sourceRef="StartEvent_0wy59w0" targetRef="ExclusiveGateway_0z7ghza" />
+      <bpmn:sequenceFlow id="SequenceFlow_1lvo8ej" sourceRef="ExclusiveGateway_0z7ghza" targetRef="ServiceTask_0xvvnm8" />
+      <bpmn:sequenceFlow id="SequenceFlow_1d8pc6s" sourceRef="StartEvent_0ssksox" targetRef="ExclusiveGateway_0z7ghza" />
+      <bpmn:sequenceFlow id="SequenceFlow_0gi5gg5" sourceRef="ServiceTask_0xvvnm8" targetRef="EndEvent_0siw0zq" />
+    </bpmn:subProcess>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Donothrow_HighLevel">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="156" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ah8ku4_di" bpmnElement="SequenceFlow_1ah8ku4">
+        <di:waypoint x="192" y="121" />
+        <di:waypoint x="242" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nz8v0f_di" bpmnElement="SequenceFlow_0nz8v0f">
+        <di:waypoint x="342" y="121" />
+        <di:waypoint x="392" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_062gjr1_di" bpmnElement="EndEvent_062gjr1">
+        <dc:Bounds x="542" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0evrqlr_di" bpmnElement="SequenceFlow_0evrqlr">
+        <di:waypoint x="492" y="121" />
+        <di:waypoint x="542" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_1j9feiv_di" bpmnElement="Task_1j1y3jc">
+        <dc:Bounds x="242" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_18snntk_di" bpmnElement="Task_09wwtmb">
+        <dc:Bounds x="392" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_1mkiuoo_di" bpmnElement="SubProcess_1mkiuoo" isExpanded="true">
+        <dc:Bounds x="196" y="193" width="372" height="246" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_0wy59w0_di" bpmnElement="StartEvent_0wy59w0">
+        <dc:Bounds x="227" y="224" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="211" y="267" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0siw0zq_di" bpmnElement="EndEvent_0siw0zq">
+        <dc:Bounds x="499" y="273" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_0ssksox_di" bpmnElement="StartEvent_0ssksox">
+        <dc:Bounds x="227" y="318" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="206" y="361" width="78" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0z7ghza_di" bpmnElement="ExclusiveGateway_0z7ghza" isMarkerVisible="true">
+        <dc:Bounds x="269" y="266" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0xvvnm8_di" bpmnElement="ServiceTask_0xvvnm8">
+        <dc:Bounds x="350" y="251" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0ogrf54_di" bpmnElement="DataObjectReference_0ogrf54">
+        <dc:Bounds x="382" y="366" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="385" y="423" width="30" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1hfpppd_di" bpmnElement="SequenceFlow_1hfpppd">
+        <di:waypoint x="263" y="242" />
+        <di:waypoint x="294" y="242" />
+        <di:waypoint x="294" y="266" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1lvo8ej_di" bpmnElement="SequenceFlow_1lvo8ej">
+        <di:waypoint x="319" y="291" />
+        <di:waypoint x="350" y="291" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1d8pc6s_di" bpmnElement="SequenceFlow_1d8pc6s">
+        <di:waypoint x="263" y="336" />
+        <di:waypoint x="294" y="336" />
+        <di:waypoint x="294" y="316" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0gi5gg5_di" bpmnElement="SequenceFlow_0gi5gg5">
+        <di:waypoint x="450" y="291" />
+        <di:waypoint x="499" y="291" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1iwhguc_di" bpmnElement="DataOutputAssociation_1iwhguc">
+        <di:waypoint x="400" y="331" />
+        <di:waypoint x="400" y="366" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
