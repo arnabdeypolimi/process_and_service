@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<title>Donothrow</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+    h2 {
+        font-family: "Raleway", sans-serif
+    }
+
+    body,
+    html {
+        height: 100%
+    }
+
+    p {
+        line-height: 2
+    }
+
+    .bgimg,
+    .bgimg2 {
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+        background-color: black;
+    }
+
+    .bgimg3 {
+        min-height: 150%;
+        background-position: center;
+        background-size: cover;
+        background-color: black;
+    }
+</style>
+
+<body>
+
+    <!-- Header / Home-->
+    <header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
+        <div class="w3-display-middle w3-text-white w3-center">
+            <h1 class="w3-jumbo">Donothrow</h1>
+            <h2>We are here for you</h2>
+            <h2><b>Milano</b></h2>
+        </div>
+    </header>
+
+    <!-- Navbar (sticky bottom) -->
+    <div class="w3-top ">
+        <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
+            <a href="#home" style="width:25%" class="w3-bar-item w3-button">Home</a>
+            <a href="#aboutUs" style="width:25%" class="w3-bar-item w3-button">About us</a>
+            <a href="#signUp" style="width:25%" class="w3-bar-item w3-button">Sign Up</a>
+            <a href="#contact" style="width:25%" class="w3-bar-item w3-button w3-hover-black">Contact</a>
+        </div>
+    </div>
+
+    <!-- About us-->
+    <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="aboutUs">
+        <div class="w3-content">
+            <h1 class="w3-center w3-text-grey"><b>About us</b></h1>
+            <p><i>We are a non profit organization helping people in need by providing extra foods from restaurants
+                    which they generally throw away.
+                    We have a database of restaurants who provide us their extra food which we distribute between the
+                    people in need.
+                    Restaurants can register to our service to help the community. People in need and organizations(who
+                    helped others) can register our services.
+                    We have a list of API for others to use our services. API documentation can be found below.
+                </i>
+            </p><br>
+            <p class="w3-center"><a href="https://fierce-earth-64250.herokuapp.com/api-doc/"
+                    class="w3-button w3-black w3-round w3-padding-large w3-large">API Details</a></p>
+            <br>
+        </div>
+        <br>
+    </div>
+
+    <!-- Background photo -->
+    <div class="w3-display-container bgimg3">
+        <div class="w3-display-middle w3-text-white w3-center">
+            <br>
+            <h1 class="w3-big">Register to our service</h1><br>
+            <h2>Only for people in need and non profit organizations</h2>
+            <br>
+            <p class="w3-center">
+                <label for="name"><b>Name </b></label>
+                <input type="text" placeholder="Enter Name" id="rname" required>
+            </p>
+            <p class="w3-center">
+                <label for="email"><b>Email </b></label>
+                <input type="text" placeholder="Enter Email" id="remail" required>
+            </p>
+            <p class="w3-center">
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" id="rpass" required>
+            </p>
+            <p class="w3-center">
+                <label>
+                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+
+                </label>
+            </p>
+
+            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+            <p class="w3-center"><a id="registerButton"
+                    class="w3-button w3-white w3-round w3-padding-large w3-large">Register</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Login information -->
+    <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="signUp">
+        <div class="w3-content">
+            <h1 class="w3-text-grey"><b>Login</b></h1>
+            <p class="w3-center">
+                <label for="email"><b>Email </b></label>
+                <input id="lemail" type="text" placeholder="Enter Email" required>
+            </p>
+            <p class="w3-center">
+                <label for="password"><b>Password</b></label>
+                <input id="lpass" type="password" placeholder="Enter Password" required>
+            </p>
+
+            <p class="w3-center"><a class="w3-button w3-white w3-round w3-padding-large w3-large"
+                    id="loginButton">Login</a></p>
+
+        </div>
+    </div>
+
+    <!-- contact section -->
+    <div class="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="contact">
+        <h1>Contact</h1>
+        <p class="w3-large">for more informtion</p>
+        <p class="w3-xlarge">
+            <button onclick="document.getElementById('id01').style.display='block'"
+                class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off"
+                style="padding:8px 60px">contact</button>
+        </p>
+    </div>
+
+    <!-- contact modal -->
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:600px">
+            <div class="w3-container w3-white w3-center">
+                <h1 class="w3-wide">Are you interested to know more?</h1>
+                <p>We would like to tell you more</p>
+                <form>
+                    <input class="w3-input w3-border" type="text" placeholder="Email" name="email">
+                </form>
+                <p><i>Sincerely, Donothrow</i></p>
+                <div class="w3-row">
+                    <div class="w3-half">
+                        <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                            class="w3-button w3-block w3-green">In need</button>
+                    </div>
+                    <div class="w3-half">
+                        <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                            class="w3-button w3-block w3-red">Restaurants</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-16">
+        <p>Powered by donothrow</p>
+    </footer>
+    <div class="w3-hide-small" style="margin-bottom:32px"> </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            console.log("inside script tag");
+            var $loginButton = $('#loginButton')
+            var $registerButton = $('#registerButton')
+
+            $loginButton.click(function () {
+                console.log("button clicked");
+                const $lemail = $('#lemail').val();
+                const $lpass = $('#lpass').val();
+                var check = $.ajax({
+                    url: 'https://fierce-earth-64250.herokuapp.com/user/signIn',
+                    type: 'POST',
+                    dataType: 'json',
+                    headers: { 'content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                    data: ({
+                        "email": $lemail,
+                        "password": $lpass
+                    }),
+                    success: function (data, textStatus, xhr) {
+                        alert(JSON.stringify(data));
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation');
+                    }
+                })
+            })
+
+            $registerButton.click(function () {
+                console.log("register button clicked")
+                const $remail = $('#remail').val();
+                const $rpass = $('#rpass').val();
+                const $rname = $('#rname').val();
+                var check = $.ajax({
+                    url: 'https://fierce-earth-64250.herokuapp.com/user/signUp',
+                    type: 'POST',
+                    dataType: 'json',
+                    headers: { 'content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                    data: ({
+                        "name": $rname,
+                        "email": $remail,
+                        "password": $rpass
+                    }),
+                    success: function (data, textStatus, xhr) {
+                        alert('registered');
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation' + errorThrown);
+                        alert('registered');
+                    }
+
+                })
+            })
+        });
+    </script>
+</body>
+
+</html>
